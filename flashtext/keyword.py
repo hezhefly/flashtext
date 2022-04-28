@@ -48,7 +48,8 @@ class KeywordProcessor(object):
             self.non_word_boundaries = set(string.digits + string.letters + '_')
         except AttributeError:
             # python 3.x
-            self.non_word_boundaries = set(string.digits + string.ascii_letters + '_')
+            self.non_word_boundaries = set('_')
+            # self.non_word_boundaries = set(string.digits + string.ascii_letters + '_')
         self.keyword_trie_dict = dict()
         self.case_sensitive = case_sensitive
         self._terms_in_trie = 0
@@ -535,7 +536,8 @@ class KeywordProcessor(object):
                                 sequence_end_pos = idy
                                 is_longer_seq_found = True
                         if is_longer_seq_found:
-                            idx = sequence_end_pos
+                            # idx = sequence_end_pos
+                            idx = sequence_end_pos - 1
                     current_dict = self.keyword_trie_dict
                     if longest_sequence_found:
                         keywords_extracted.append((longest_sequence_found, sequence_start_pos, idx))
